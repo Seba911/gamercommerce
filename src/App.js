@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Products from './pages/Products';
 import Detail from './pages/Detail'
+import CheckOut from './pages/Checkout';
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
           <Route path="/contacto" element={<Contact />}/>
           <Route path="/productos" element={<Products />}/>
           {/* :id la libreria reconoce que es un dato dinamico */}
-          <Route path="/:category/:id" element={<Detail />} />
+          <Route path="/productos/:id" element={<Detail />} />
+          <Route path="/category/:categoryId" element={<Products />}/>
+          <Route path="/cart" element={<CheckOut />} />
         </Routes>
 {/*         <div className='my-4'>
           <h1 style={{ color: "white" }}>Gamer Commerce</h1>

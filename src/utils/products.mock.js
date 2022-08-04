@@ -4,7 +4,7 @@ const products = [
         title:"Mother Asus Prime B365M",
         price: 25000,
         img:"../assets/images/ASUS-PRIME-B365M.jpg",
-        category:"Motherboard",
+        category:"motherboards",
         stock: 6,
         initial: 1,
     },
@@ -13,7 +13,7 @@ const products = [
         title:"Placa Nvidia 1650GTX 4gb",
         price: 65000,
         img:"../assets/images/GTX-1650.jpg",
-        category:"Placa de video",
+        category:"placas_video",
         stock: 4,
         initial: 1,
     }

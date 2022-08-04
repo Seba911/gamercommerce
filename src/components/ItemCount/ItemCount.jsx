@@ -2,43 +2,66 @@ import { useState } from "react";
 
 /* El contador tiene q tener logica x detras, q el contador no puede superar la cantidad total a traves
 de la prop Stock x ej */
-const ItemCount = ({stock, initial}) => {
+const ItemCount = ({ stock, initial, setQuantitySelected }) => {
 
-  const [count, setCount] = useState(initial);
-  const [btnRestaActivo, SetBtnRestaActivo]= useState(false);
-  const [btnSumaActivo, SetBtnSumaActivo]= useState(false);
-  const onAdd = () => {
-    setCount(count + 1);
-    if(count >= 1){
+  const [countQuantity, setCountQuantity] = useState(initial);
+  const [btnRestaActivo, SetBtnRestaActivo] = useState(false);
+  const [btnSumaActivo, SetBtnSumaActivo] = useState(false);
+  const addQuantity = () => {
+    setCountQuantity(countQuantity + 1);
+    if (countQuantity >= 1) {
       SetBtnRestaActivo(false)
 
     }
-    if(count === stock - 1){
+    if (countQuantity === stock - 1) {
       SetBtnSumaActivo(true)
 
     }
   };
 
-  const decreaseCount = () => {
-    setCount(count - 1);
-    if(count <= initial){
+  const removeQuantity = () => {
+    setCountQuantity(countQuantity - 1);
+    if (countQuantity <= initial) {
       SetBtnRestaActivo(true)
 
     }
-    if(count <= stock){
+    if (countQuantity <= stock) {
       SetBtnSumaActivo(false)
 
     }
 
   };
-    return(
-        <div className="d-flex justify-content-between align-items-center rounded mb-3" style={{backgroundColor:"white", border:"1px solid black"}}>
-            <button className="mx-2" style={{border:"none", backgroundColor:"transparent", fontSize:"1.4em"}} onClick={decreaseCount} disabled={btnRestaActivo} >-</button>
-            <p className="m-0 p-0">{count}</p>
-            <button className="mx-2" style={{border:"none", backgroundColor:"transparent", fontSize:"1.4em"}} onClick={onAdd} disabled={btnSumaActivo}>+</button>
-        </div>
 
-    )
+  const onAdd = () =>{
+    setQuantitySelected(countQuantity)
+  }
+  return (
+    <div>
+      <div className="d-flex justify-content-between align-items-center rounded mb-3" style={{ backgroundColor: "white", border: "1px solid black" }}>
+        <button
+          className="mx-2"
+          style={{ border: "none", backgroundColor: "transparent", fontSize: "1.4em" }}
+          onClick={removeQuantity}
+          disabled={btnRestaActivo} >-</button>
+
+        <p className="m-0 p-0">{countQuantity}</p>
+
+        <button
+          className="mx-2"
+          style={{ border: "none", backgroundColor: "transparent", fontSize: "1.4em" }}
+          onClick={addQuantity}
+          disabled={btnSumaActivo}>+</button>
+
+      </div>
+      <div>
+        <button className='btn' style={{background: "gray",border: "none",color: "white"}}
+          onClick={onAdd}>
+          Añadir al carrito
+        </button>
+      </div>
+    </div>
+
+  )
 }
 export default ItemCount
 

@@ -6,6 +6,8 @@ import ItemCount from '../ItemCount/ItemCount'
 
 const ItemDetail = ({data, section}) =>{
 
+    const [quantitySelected, setQuantitySelected] = useState(1)
+
     console.log(data)
 
     return(
@@ -32,23 +34,16 @@ const ItemDetail = ({data, section}) =>{
                 <p>o 12 cuotas de $3333 pagando con Tarjeta de Crédito</p>
                 <Link to="/" style={{fontSize:".7em", textDecoration:"none", color:"#EA75FF"}} className=''>Ver medios de pago</Link>
                 <hr />
-                <ItemCount initial={data.initial} stock={data.stock}/>
                 <span style={{color:"#3CF586"}}>Envio Gratis</span>
-                
-                <div>
-                    <button className='btn' style={{
-                        background:"linear-gradient(180deg, rgba(148,6,171,1) 0%, rgba(212,117,255,1) 100%)",
-                        border:"none", 
-                        color:"white"}}>
-                            Comprar ahora
-                    </button>
-                    <button className='btn' style={{
-                        background:"gray",
-                        border:"none", 
-                        color:"white"}}>
-                            Añadir al carrito
-                    </button>
-                </div>
+                {console.log("quantitySelected: ", quantitySelected)}
+
+                {
+                    quantitySelected > 1 ? <Link to="/cart"> <button>Terminar Compra </button></Link>
+                    : 
+                    <ItemCount initial={data.initial} stock={data.stock} setQuantitySelected={setQuantitySelected}/>
+                }
+
+
 
             </Col>
     {/*           <ItemList dataProducts={listProducts} /> */}

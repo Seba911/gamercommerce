@@ -7,7 +7,7 @@ const Item = ({ data }) => {
 
     const { id, title, price, img, category, stock, initial} = data
 
-    console.log("Titulo: " + title + "Precio: " + price)
+/*     console.log("Titulo: " + title + "Precio: " + price) */
 
     return (
         <Col lg="3" className="mb-5" >
@@ -21,12 +21,12 @@ const Item = ({ data }) => {
                         <h4 style={{color:"gray", fontWeight:"300"}}>$ {price}</h4>
                         <p>Stock: {stock}</p>
                         <ItemCount initial={initial} stock={stock}/>
-                        <button className='btn' style={{
+{/*                         <button className='btn' style={{
                             background:"linear-gradient(180deg, rgba(148,6,171,1) 0%, rgba(212,117,255,1) 100%)",
                             border:"none", 
                             color:"white"}}>
                                 Añadir al carrito
-                        </button>
+                        </button> */}
                     </div>
             
        
