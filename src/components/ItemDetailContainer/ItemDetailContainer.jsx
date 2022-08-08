@@ -12,10 +12,10 @@ const ItemDetailContainer = ({section}) =>{
     /* uno nuevo */
     const [productData, setProductData] = useState({})
 
-    console.log("use Params",useParams())
+/*     console.log("use Params",useParams()) */
     const {id} = useParams()
 
-    console.log("id de parametro", id)
+/*     console.log("id de parametro", id) */
 
     useEffect( () =>{
         filterById()
@@ -24,7 +24,7 @@ const ItemDetailContainer = ({section}) =>{
     const filterById = () =>{
         products.some( (product) => {
             if (product.id == id){
-                console.log("Producto filtrado: ", product)
+/*                 console.log("Producto filtrado: ", product) */
                 setProductData(product)
             }
         })

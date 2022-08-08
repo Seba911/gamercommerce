@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CartContext } from "../../context/CartContext";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 /* El contador tiene q tener logica x detras, q el contador no puede superar la cantidad total a traves
 de la prop Stock x ej */
-const ItemCount = ({ stock, initial, setQuantitySelected }) => {
+const ItemCount = ({ stock, initial, setQuantitySelected, productData }) => {
 
-  const [countQuantity, setCountQuantity] = useState(initial);
+  /* solo se llama a la funcion que se encargue de modificar al estiado de cartproducts */
+  const { addProductToCart } = useContext(CartContext)
+
+  const [countQuantity, setCountQuantity] = useState(1);
   const [btnRestaActivo, SetBtnRestaActivo] = useState(false);
   const [btnSumaActivo, SetBtnSumaActivo] = useState(false);
+  
   const addQuantity = () => {
     setCountQuantity(countQuantity + 1);
     if (countQuantity >= 1) {
@@ -32,8 +38,16 @@ const ItemCount = ({ stock, initial, setQuantitySelected }) => {
 
   };
 
+/*   const productToAdd = {...productData, quantitySelected}
+
+  console.log("Probando Product to add: ", productToAdd) */
+
   const onAdd = () =>{
+    console.log("Agregar al carrito:", productData)
+    /*     addProductToCart(productData) */
     setQuantitySelected(countQuantity)
+    addProductToCart({...productData, countQuantity})
+/*     addProductToCart(productToAdd) */
   }
   return (
     <div>
@@ -56,6 +70,7 @@ const ItemCount = ({ stock, initial, setQuantitySelected }) => {
       <div>
         <button className='btn' style={{background: "gray",border: "none",color: "white"}}
           onClick={onAdd}>
+          <AddShoppingCartIcon className="mx-1" />
           Añadir al carrito
         </button>
       </div>

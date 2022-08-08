@@ -14,7 +14,7 @@ const Home = () =>{
         <div className='container my-4'>
               <section className='main-container'>
                 <h1 style={{color:"white"}}>Home</h1>
-                <ul>
+{/*                 <ul>
                   {links.map( (link, i) =>{
                     return (
                       <li key={i}>
@@ -22,7 +22,7 @@ const Home = () =>{
                       </li>
                     )
                   })}
-                </ul>
+                </ul> */}
 {/*                 <ItemDetailContainer /> */}
                 <ItemListContainer section="Productos en oferta" />
               </section>

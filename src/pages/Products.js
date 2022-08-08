@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 const Products = () =>{
 
     const {categoryId} = useParams()
-    console.log(categoryId)
+/*     console.log(categoryId) */
     
 
 

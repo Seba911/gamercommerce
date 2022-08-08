@@ -1,14 +1,14 @@
 import { Row, Col } from 'reactstrap'
-import ItemList from "../ItemList/ItemList"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import {Link} from 'react-router-dom'
 import ItemCount from '../ItemCount/ItemCount'
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 
 const ItemDetail = ({data, section}) =>{
 
-    const [quantitySelected, setQuantitySelected] = useState(1)
+    const [quantitySelected, setQuantitySelected] = useState(0)
 
-    console.log(data)
+/*     console.log(data) */
 
     return(
         <div className='container my-5'>
@@ -35,12 +35,21 @@ const ItemDetail = ({data, section}) =>{
                 <Link to="/" style={{fontSize:".7em", textDecoration:"none", color:"#EA75FF"}} className=''>Ver medios de pago</Link>
                 <hr />
                 <span style={{color:"#3CF586"}}>Envio Gratis</span>
-                {console.log("quantitySelected: ", quantitySelected)}
+{/*                 {console.log("quantitySelected: ", quantitySelected)} */}
 
                 {
-                    quantitySelected > 1 ? <Link to="/cart"> <button>Terminar Compra </button></Link>
+                    quantitySelected > 0 ? 
+                    <div>
+                        <Link to="/cart">
+                            
+                            <button className='btn btn-success' style={{background: "",border: "none",color: "white"}}>
+                                <LocalAtmIcon className='mx-2' />
+                                Terminar Compra
+                            </button>
+                        </Link>
+                    </div>
                     : 
-                    <ItemCount initial={data.initial} stock={data.stock} setQuantitySelected={setQuantitySelected}/>
+                    <ItemCount initial={data.initial} stock={data.stock} quantitySelected={quantitySelected} setQuantitySelected={setQuantitySelected} productData={data}/>
                 }
 
 

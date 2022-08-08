@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import './NavBar.scss'
-import CardWidget from '../CardWidget/CardWidget'
+import CardWidget from '../CartWidget/CartWidget'
 import { Link } from 'react-router-dom'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
@@ -23,7 +23,7 @@ const NavBar = () => {
                 <Link to="/productos" className='p-0 m-0 mx-4' style={{color:"white", textDecoration:"none"}}>Productos</Link>
 {/*                 <Link to="/category" className='p-0 m-0 mx-4' style={{color:"white", textDecoration:"none"}}>Categorias</Link> */}
                 <Dropdown isOpen={dropdownOpen} toggle={toggle} >
-                    <DropdownToggle caret color="none" className='px-3 py-0'>
+                    <DropdownToggle caret color="" className='text-white px-3 py-0'>
                         Categorias
                     </DropdownToggle>
                     <DropdownMenu>
