@@ -5,12 +5,17 @@ const CartContext = createContext()
 
 const CartProvider = ({children}) =>{
     const [cartProducts, setCartProducts] = useState([])
+    const [totalProducts, setTotalProducts] = useState(0)
+
+    const preciosProductos = cartProducts.map((product) => product.price * product.countQuantity)
+    let totalPreciosProductos = preciosProductos.reduce((a,b) => a+b, 0)
 
     console.log("cartProducts: ", cartProducts)
 
     const addProductToCart = (product) => {
         const productIndex = cartProducts.findIndex((productInCart) => productInCart.id  === product.id)
         if(productIndex === -1){
+            setTotalProducts(totalProducts + product.countQuantity)
             setCartProducts([...cartProducts, product])
         } else{
             const cartCopy = [...cartProducts];
@@ -42,12 +47,35 @@ const CartProvider = ({children}) =>{
 
     const clear = () => {
         setCartProducts([])
+        setTotalProducts(0)
     }
 
     const removeItem = (id) => {
-/*         cartProducts.splice(setCartProducts([product])) */
+
         const newCart = cartProducts.filter((product) => product.id !== id)
         setCartProducts(newCart)
+/* 
+        const newCart = cartProducts.filter((product) => product.id !== id)
+        const totalQuantity = cartProducts.map((product) => product.countQuantity)
+        let totalDeEso = totalQuantity.reduce((a,b) => a+b, 0)
+       
+        console.log("Que es totalProducts", totalProducts)
+        setCartProducts(newCart) */
+
+
+/*         let totalDeEso = totalQuantity.reduce((a,b) => a+b, 0)
+        let resultado = totalDeEso - totalProducts
+
+
+        console.log("QUantity TOtal: ", resultado) */
+        
+        
+/*         const totalNewCart = newCart.map((product)=> product.countQuantity)
+        let totalDeEso = totalNewCart.reduce((a,b) => a+b, 0)
+        setTotalProducts(totalNewCart - totalDeEso)
+        console.log("Total de esto:", totalDeEso)
+        console.log("Productos tottales: ", totalProducts) */
+
     }
 
     
@@ -58,6 +86,8 @@ const CartProvider = ({children}) =>{
         clear,
         removeItem,
         addProductToCart,
+        totalProducts,
+        totalPreciosProductos
     }
     
     return(

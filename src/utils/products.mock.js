@@ -16,6 +16,15 @@ const products = [
         category:"placas_video",
         stock: 4,
         initial: 1,
+    },
+    {
+        id: 3,
+        title:"Nvidia GeForce GTX 16 4gb",
+        price: 165000,
+        img:"../assets/images/GeForce_GTX 16.jpg",
+        category:"placas_video",
+        stock: 4,
+        initial: 1,
     }
 ]
 export default products

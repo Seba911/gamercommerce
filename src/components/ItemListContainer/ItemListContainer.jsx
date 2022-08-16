@@ -56,7 +56,7 @@ const ItemListContainer = ({section}) =>{
     return(
         <Row className="m-0 p-0 justify-content-center">
           <h4 className="mt-4" style={{color:"white", margin:""}}>{section}</h4>
-{/*        {!show ? <Loading /> : <ItemList dataProducts={listProducts}/>} */}
+{/*             {!show ? <Loading /> : <ItemList dataProducts={listProducts}/>} */}
           <ItemList dataProducts={listProducts} />
         </Row>
     )

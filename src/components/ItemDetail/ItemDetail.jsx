@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import ItemCount from '../ItemCount/ItemCount'
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 
-const ItemDetail = ({data, section}) =>{
+const ItemDetail = ({data, section, setShowModal}) =>{
 
     const [quantitySelected, setQuantitySelected] = useState(0)
 
@@ -16,7 +16,11 @@ const ItemDetail = ({data, section}) =>{
             <Row className="m-0 py-4 justify-content-center rounded bg-white">
             <h4 className="mt-4" style={{color:"white", margin:""}}>{section}</h4>
             <Col lg="5" className='mx-4 p-0' >
-                <img className='rounded' style={{width:"100%"}} src={data.img}/>
+                <img className='rounded'    
+                    style={{width:"100%"}} 
+                    src={data.img} 
+                    /* hay que llamarlo en callback para que no se ejecute todo el tiempo */
+                    onClick={() =>setShowModal(true)}/>
                 <Row className='mt-2 m-2 p-0 thumbnail justify-content-between'>
                     <img className='m-0 p-0 rounded' style={{width:70, border:"2px solid #EA75FF"}} src={data.img}/>
                     <img className='m-0 p-0 rounded border' style={{width:70, filter: "contrast(40%) brightness(140%)",}} src={data.img}/>

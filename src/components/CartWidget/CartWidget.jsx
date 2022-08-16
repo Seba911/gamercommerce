@@ -15,9 +15,13 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 
+import { Link } from 'react-router-dom';
+
 const CartWidget = () => {
 
-    const { cartProducts, clear, removeItem } = useContext(CartContext)
+    const { cartProducts, clear, removeItem, totalProducts } = useContext(CartContext)
+
+
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -30,6 +34,9 @@ const CartWidget = () => {
 
     console.log(cartProducts.length)
 
+    console.log("Total products: ", totalProducts)
+
+
     return (
         <div>
             <Button
@@ -41,9 +48,12 @@ const CartWidget = () => {
                 style={{color:"white"}}
             >
                 <ShoppingCartIcon />
-                <div style={{backgroundColor:"red", width:15, borderRadius:25, height:16, margin:"0px -10px"}} >
-                    <p className='' style={{fontSize:".7em"}}>1</p>
-                </div>
+                {cartProducts.length !== 0 && <div style={{backgroundColor:"red", width:15, borderRadius:25, height:16, margin:"0px -10px"}} >
+                    <p className='' style={{fontSize:".7em"}}>{totalProducts}</p>
+                </div>}
+
+                
+
             </Button>
             <Menu
                 id="basic-menu"
@@ -89,6 +99,9 @@ const CartWidget = () => {
                         </div>
                     )
                 })}
+                <div className='text-center'>
+                    <Link to="/cart"><button className='btn btn-secondary m-2'>Ir al CheckOut</button></Link>
+                </div>
                 <div className='text-center'>
                     <button className='btn btn-primary m-2' onClick={() => clear()}><DeleteForeverIcon />Borrar Todo</button>
                 </div>

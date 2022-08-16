@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import ItemDetail from '../ItemDetail/ItemDetail'
 import products from '../../utils/products.mock'
 import {useParams} from 'react-router-dom'
+import Modal from '../Modal/Modal'
 
 const ItemDetailContainer = ({section}) =>{
 
@@ -11,6 +12,7 @@ const ItemDetailContainer = ({section}) =>{
     // Para pasar a Itemdetails, hay q guardar el estado del producto en
     /* uno nuevo */
     const [productData, setProductData] = useState({})
+    const [showModal, setShowModal] = useState(false)
 
 /*     console.log("use Params",useParams()) */
     const {id} = useParams()
@@ -19,7 +21,7 @@ const ItemDetailContainer = ({section}) =>{
 
     useEffect( () =>{
         filterById()
-    },[])
+    },[id])
 
     const filterById = () =>{
         products.some( (product) => {
@@ -32,9 +34,14 @@ const ItemDetailContainer = ({section}) =>{
 
     console.log(products)
     return(
-        <>
-            <ItemDetail data={productData}/>
-        </>
+        <div className={`container-item-detail ${showModal ? "overlay-black" : ""}`}>
+            <ItemDetail data={productData} setShowModal={setShowModal}/>
+            {showModal && (
+                <Modal title="Titulo producto" close={setShowModal}>
+                    <img src={`/assets/${productData.img}`}/>
+                </Modal>
+            )}
+        </div>
     )
 } 
 export default ItemDetailContainer
