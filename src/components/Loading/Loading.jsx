@@ -1,8 +1,13 @@
-import React from "react"
+import * as React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import './Loading.scss'
 
 const Loading = () => {
     return (
-        <h4>Loading</h4>
+        <Box className='loading'>
+            <CircularProgress />
+        </Box>
     )
 }
 export default Loading

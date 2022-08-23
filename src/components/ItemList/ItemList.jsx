@@ -6,8 +6,6 @@ const ItemList = ({dataProducts}) =>{
 
     const {cartProducts} = useContext(CartContext)
 
-    console.log("Info desde el contexto: ", cartProducts )
-
     return(
         <>  
             {dataProducts?.map( (product) => {

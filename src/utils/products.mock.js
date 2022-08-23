@@ -23,7 +23,7 @@ const products = [
         price: 165000,
         img:"../assets/images/GeForce_GTX 16.jpg",
         category:"placas_video",
-        stock: 4,
+        stock: 2,
         initial: 1,
     }
 ]

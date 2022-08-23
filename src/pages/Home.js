@@ -1,33 +1,65 @@
 import ItemListContainer from "../components/ItemListContainer/ItemListContainer"
-import ItemDetailContainer from "../components/ItemDetailContainer/ItemDetailContainer"
 import { Link } from "react-router-dom"
 
-const Home = () =>{
 
-    const links = [
-      {name:"Motherboards", url:"/category/motherboards"},
-      {name:"Placas de Video", url:"/category/placas_video"}
-    ]
+const Home = () => {
 
-    return(
-        <>
-        <div className='container my-4'>
-              <section className='main-container'>
-                <h1 style={{color:"white"}}>Home</h1>
-{/*                 <ul>
-                  {links.map( (link, i) =>{
-                    return (
-                      <li key={i}>
-                        <Link to={link.url}>{link.name}</Link>
-                      </li>
-                    )
-                  })}
-                </ul> */}
-{/*                 <ItemDetailContainer /> */}
-                <ItemListContainer section="Productos en oferta" />
-              </section>
-            </div>
-        </>
-    )
+
+  return (
+    <>
+      <div className='container '>
+        <section className="showcase">
+          <header>
+            <h2 className="logo">GAMERCOMMERCE</h2>
+            <div className="toggle"></div>
+          </header>
+          <video className='videoTag' autoPlay loop muted>
+            <source src="../assets/video/video_gamercommerce.mp4" type="video/mp4" />
+          </video>
+          <div className="overlay"></div>
+          <div className="text row justify-content-center">
+            <h2>Armá la PC Gamer</h2>
+            <h3>Que siempre quisiste</h3>
+            <p className="" style={{fontWeight:"100"}}>Bienvenido a mi proyecto de ecommerce en base a productos gamers.
+
+            Este proyecto fue hecho con fines de aprendizaje por lo que cada imagen o video utilizado no tiene propositos
+            comerciales.</p>
+              <div>
+                <Link to="/productos" className='neonBtn'>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Explorar
+                </Link>
+             {/*    <a href="#">Explorar</a> */}
+              </div>
+            <div className="mt-3">
+                <ItemListContainer section="Productos destacados" />
+              </div>
+          </div>
+
+        </section>
+        {/* <section className='main-container'>
+                <div className=""  >
+                  <div className="" >
+                    <video className='videoTag' autoPlay loop muted>
+                      <source src="../assets/video/video_gamercommerce.mp4" type="video/mp4" />
+                    </video>
+                    <h1 style={{color:"white", fontWeight:"100", fontSize:"2em"}}>Arma la <strong>PC gamer</strong> que siempre quisiste</h1>
+                    <p style={{color:"white"}}>Lorem Ipsum texto de relleno Ipsum texto de relleno Ipsum texto de relleno Ipsum texto de relleno Ipsum 
+                      texto de relleno Ipsum texto de relleno </p>
+                    <button>Explorar</button>
+                  </div>
+                  <div className="">
+                    <ItemListContainer section="Productos destacados" />
+                  </div>
+
+                </div>
+                
+              </section> */}
+      </div>
+    </>
+  )
 }
 export default Home

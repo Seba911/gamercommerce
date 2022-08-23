@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 
 const CartContext = createContext()
@@ -10,13 +10,33 @@ const CartProvider = ({children}) =>{
     const preciosProductos = cartProducts.map((product) => product.price * product.countQuantity)
     let totalPreciosProductos = preciosProductos.reduce((a,b) => a+b, 0)
 
-    console.log("cartProducts: ", cartProducts)
+    const [totalPrice, setTotalPrice] = useState(0)
+
+
+/*     const [stockDisponible, setStockDisponible] = useState()
+    const [cantidadSeleccionada, setCantidadSeleccionada] = useState()
+
+    const mapCantidadSeleccionada = cartProducts.map((product) => product.countQuantity)
+
+
+    const mapStockDisponible = cartProducts.map((product) => product.stock)
+
+    useEffect(() =>{
+        setStockDisponible(mapStockDisponible[0])
+        setCantidadSeleccionada(mapCantidadSeleccionada[0])
+    })
+
+    console.log("stockDisponible: ", stockDisponible)
+    console.log("cantidadSeleccionada: ", cantidadSeleccionada) */
+
 
     const addProductToCart = (product) => {
         const productIndex = cartProducts.findIndex((productInCart) => productInCart.id  === product.id)
         if(productIndex === -1){
             setTotalProducts(totalProducts + product.countQuantity)
+            setTotalPrice(totalPrice + product.price * product.countQuantity)
             setCartProducts([...cartProducts, product])
+
         } else{
             const cartCopy = [...cartProducts];
             cartCopy[productIndex].countQuantity = cartCopy[productIndex].countQuantity + product.countQuantity
@@ -54,28 +74,31 @@ const CartProvider = ({children}) =>{
 
         const newCart = cartProducts.filter((product) => product.id !== id)
         setCartProducts(newCart)
-/* 
-        const newCart = cartProducts.filter((product) => product.id !== id)
-        const totalQuantity = cartProducts.map((product) => product.countQuantity)
-        let totalDeEso = totalQuantity.reduce((a,b) => a+b, 0)
-       
-        console.log("Que es totalProducts", totalProducts)
-        setCartProducts(newCart) */
+
+        const cantidad = []
+
+        newCart.map((product) => {
+            return cantidad.push(product.countQuantity)
+        })
+
+        console.log("cantidad: ", cantidad)
+
+        let sumarCantidades = cantidad.reduce((a,b) => a+b, 0)
+
+        console.log("sumarCantidades: ", sumarCantidades)
+        setTotalProducts(sumarCantidades)
 
 
-/*         let totalDeEso = totalQuantity.reduce((a,b) => a+b, 0)
-        let resultado = totalDeEso - totalProducts
-
-
-        console.log("QUantity TOtal: ", resultado) */
         
-        
-/*         const totalNewCart = newCart.map((product)=> product.countQuantity)
-        let totalDeEso = totalNewCart.reduce((a,b) => a+b, 0)
-        setTotalProducts(totalNewCart - totalDeEso)
-        console.log("Total de esto:", totalDeEso)
-        console.log("Productos tottales: ", totalProducts) */
 
+
+/*         const newCartCountQuantity = newCart.map((product) => product.countQuantity)
+        let cantidadTotalProductos = newCartCountQuantity.find(object =>{
+            return object
+        })
+        console.log("cantidadTotalProductos: ", cantidadTotalProductos)
+
+        setTotalProducts(totalProducts - cantidadTotalProductos) */
     }
 
     
@@ -87,7 +110,9 @@ const CartProvider = ({children}) =>{
         removeItem,
         addProductToCart,
         totalProducts,
-        totalPreciosProductos
+        totalPreciosProductos,
+        totalPrice,
+/*         cantidadSeleccionada */
     }
     
     return(

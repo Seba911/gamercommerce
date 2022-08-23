@@ -1,13 +1,14 @@
 import { useState, useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { Link } from "react-router-dom";
 
 /* El contador tiene q tener logica x detras, q el contador no puede superar la cantidad total a traves
 de la prop Stock x ej */
 const ItemCount = ({ stock, initial, setQuantitySelected, productData }) => {
 
   /* solo se llama a la funcion que se encargue de modificar al estiado de cartproducts */
-  const { addProductToCart } = useContext(CartContext)
+  const { addProductToCart, cantidadSeleccionada, cartProducts} = useContext(CartContext)
 
   const [countQuantity, setCountQuantity] = useState(1);
   const [btnRestaActivo, SetBtnRestaActivo] = useState(false);
@@ -43,10 +44,25 @@ const ItemCount = ({ stock, initial, setQuantitySelected, productData }) => {
   console.log("Probando Product to add: ", productToAdd) */
 
   const onAdd = () =>{
-    console.log("Agregar al carrito:", productData)
-    /*     addProductToCart(productData) */
+/*     console.log("Agregar al carrito:", productData) */
+
     setQuantitySelected(countQuantity)
+
+/*     const cantidadEnCartProducts = cartProducts.map((product) => product.countQuantity)
+    const idDelProducto = cartProducts.map((product) => product.id)
+    console.log("idDelProducto: ", idDelProducto)
+
+    if(cantidadEnCartProducts[0] >= stock){
+      console.log("No se puede agregar")
+    } else{
+      addProductToCart({...productData, countQuantity})
+    }
+ */
     addProductToCart({...productData, countQuantity})
+    
+    /*     addProductToCart(productData) */
+
+/*     setQuantitySelected(countQuantity) */
 /*     addProductToCart(productToAdd) */
   }
   return (
@@ -68,11 +84,13 @@ const ItemCount = ({ stock, initial, setQuantitySelected, productData }) => {
 
       </div>
       <div>
-        <button className='btn' style={{background: "gray",border: "none",color: "white"}}
+
+          <button className='btn' style={{background: "gray",border: "none",color: "white"}}
           onClick={onAdd}>
           <AddShoppingCartIcon className="mx-1" />
           Añadir al carrito
         </button>
+        
       </div>
     </div>
 

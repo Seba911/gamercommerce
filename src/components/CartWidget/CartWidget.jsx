@@ -6,7 +6,6 @@ import IconButton from '@mui/material/IconButton';
 
 import Fab from '@mui/material/Fab';
 
-
 import { useContext, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
 import {Row, Col} from 'reactstrap'
@@ -21,8 +20,6 @@ const CartWidget = () => {
 
     const { cartProducts, clear, removeItem, totalProducts } = useContext(CartContext)
 
-
-
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -31,8 +28,6 @@ const CartWidget = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-    console.log(cartProducts.length)
 
     console.log("Total products: ", totalProducts)
 
@@ -84,7 +79,10 @@ const CartWidget = () => {
                                 <div className='m-3'>
                                     <p style={{fontSize:".6em"}}><strong>Precio:</strong> $ {product.price} c/u</p>
                                     <div className='d-flex'>
-                                        <p className='m-0 p-0' style={{fontSize:".6em"}}>{console.log("Cantidad: ", product.countQuantity )}CANTIDAD: {product.countQuantity}</p>
+                                        <p className='m-0 p-0' style={{fontSize:".6em"}}>
+                                            {console.log("Cantidad: ", product.countQuantity )}
+                                            CANTIDAD: {product.countQuantity}
+                                        </p>
                                     </div>
                                 </div>
                                 <div className='d-flex align-items-center'>

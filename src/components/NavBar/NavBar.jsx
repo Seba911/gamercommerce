@@ -10,7 +10,7 @@ const NavBar = () => {
     const toggle = () => setDropdownOpen(prevState => !prevState);
 
     return (
-        <nav className='m-0 row justify-content-between align-items-center p-3' style={{backgroundColor:"#ae02cc"}}>
+        <nav className='m-0 row justify-content-between align-items-center p-3' style={{background:"linear-gradient(0deg, rgba(27,34,77,1) 0%, rgba(174,2,204,0.2) 100%)", borderBottom:"1px solid #9d5bff"}}>
             <Link to="/" className='d-flex col-lg-4 align-items-center' style={{textDecoration:"none"}}>
                 <div style={{ backgroundColor: "white", height: "25px", width: "25px", borderRadius:"114px" }}></div>
                 <p className='m-0 p-0' style={{color:"white", fontWeight:"700", textAlign:"left", }}>Logo</p>
