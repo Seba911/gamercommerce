@@ -86,7 +86,7 @@ const CartWidget = () => {
                                     </div>
                                 </div>
                                 <div className='d-flex align-items-center'>
-                                <Fab size="small" color="warning" className="" aria-label="add" onClick={() => removeItem(product.id)}>
+                                <Fab size="small" color="error" className="" aria-label="removeItem" onClick={() => removeItem(product.id)}>
                                     <DeleteIcon />
                                 </Fab>
 
@@ -101,7 +101,7 @@ const CartWidget = () => {
                     <Link to="/cart"><button className='btn btn-secondary m-2'>Ir al CheckOut</button></Link>
                 </div>
                 <div className='text-center'>
-                    <button className='btn btn-primary m-2' onClick={() => clear()}><DeleteForeverIcon />Borrar Todo</button>
+                    <button className='btn btn-danger m-2' onClick={() => clear()}><DeleteForeverIcon />Borrar Todo</button>
                 </div>
          
             </Menu>

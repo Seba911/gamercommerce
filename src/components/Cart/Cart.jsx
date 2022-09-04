@@ -1,6 +1,6 @@
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import './Cart.scss'
 import Fab from '@mui/material/Fab';
 
 import { useContext, useState, useEffect } from 'react';
@@ -18,14 +18,20 @@ import Modal from '../Modal/Modal'
 
 import db from '../../firebaseConfig';
 import {collection, addDoc} from 'firebase/firestore'
-
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
+import Loading from '../Loading/Loading'
 
 const Cart = () =>{
 
     const [showModal, setShowModal] = useState(false)
     const [success, setSuccess] = useState(false)
+    const [loading, setLoading] = useState(false);
 
-    const { cartProducts, removeItem, totalPreciosProductos, totalPrice } = useContext(CartContext)
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const { cartProducts, removeItem, totalPreciosProductos, clear } = useContext(CartContext)
     
 
     // Un estado para mapear la info con la misma estructura de firebase
@@ -74,13 +80,17 @@ const Cart = () =>{
 
     const handleChange = (e) =>{
         // Para evitar q se haga por parametros, se accede al tipo de dato directametne a traves del target.name, que vendria a ser como un id
+
         setFormData({...formData, [e.target.name]: e.target.value})
     }
 
     const submitData = (e) => {
-        e.preventDefault()
+  /*       e.preventDefault() */
         console.log("order para enviar: ", {...order, buyer: formData })
+        console.log("nombre del comprador",{buyer: formData.name})
+        setLoading(true)
         pushData({...order, buyer: formData })
+        
     }
 
     const pushData = async (newOrder) => {
@@ -89,8 +99,10 @@ const Cart = () =>{
         // Seleccionamos el documento, y se lo agregamos al elemento addDoct
         // Pushea el documento a la coleccion
         const orderDoc = await addDoc(collectionOrder, newOrder)
+        setLoading(false)
         setSuccess(orderDoc.id)
         console.log()
+        clear()
     }
 
     return(
@@ -107,35 +119,36 @@ const Cart = () =>{
                     </div>
                     :
                     
-                    <div className="row">
-                    <TableContainer component={Paper}>
+                    <div className="row mx-3">
+                    <TableContainer className="bg-dark " component={Paper}>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
-                                <TableRow>
-                                    <TableCell align="center">Imagen Producto</TableCell>
-                                    <TableCell align="center">Nombre producto</TableCell>
-                                    <TableCell align="center">Precio</TableCell>
-                                    <TableCell align="center">Cantidad</TableCell>
-                                    <TableCell>Acción</TableCell>
+                                <TableRow >
+                                    <TableCell align="center" style={{color:"white"}} >Imagen Producto</TableCell>
+                                    <TableCell align="center" style={{color:"white"}} >Nombre producto</TableCell>
+                                    <TableCell align="center" style={{color:"white"}} >Precio</TableCell>
+                                    <TableCell align="center" style={{color:"white"}} >Cantidad</TableCell>
+                                    <TableCell style={{color:"white"}}>Acción</TableCell>
                                 </TableRow>
                             </TableHead>
 
-                            <TableBody>
+                            <TableBody >
                                 {cartProducts.map((product) => {
                                     return(
                                         
                                         <TableRow 
                                             key={product.id} 
+                                            
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                         <TableCell align='center' component="th" scope="row">
-                                        <img style={{width:"90px"}} src={product.img} alt={product.title}/>
+                                        <img className='rounded' style={{width:"90px"}} src={product.img} alt={product.title}/>
                                         </TableCell>
-                                        <TableCell align="center">{product.title}</TableCell>
-                                        <TableCell align="center">$ {product.price}</TableCell>
-                                        <TableCell align="center">{product.countQuantity}</TableCell>
+                                        <TableCell align="center" style={{color:"white"}}>{product.title}</TableCell>
+                                        <TableCell align="center" style={{color:"white"}}>$ {product.price}</TableCell>
+                                        <TableCell align="center" style={{color:"white"}}>{product.countQuantity}</TableCell>
                                         <TableCell>
                                             <div className='d-flex align-items-center'>
-                                            <Fab size="small" color="warning" className="" aria-label="add" onClick={() => removeItem(product.id)}>
+                                            <Fab size="small" color="error" className="" aria-label="add" onClick={() => removeItem(product.id)}>
                                                 <DeleteIcon />
                                             </Fab>
 
@@ -152,85 +165,90 @@ const Cart = () =>{
                     </TableContainer>
                     {totalPreciosProductos === 0 ? 
                     "" : 
-                    <div className='card'>
-                        <h4 className='my-3'>Total Productos: ${totalPreciosProductos}</h4> 
+                    <div className='card bg-dark p-3'>
+                        <h4 className='my-3' style={{color:"white"}}>Total a abonar: ${totalPreciosProductos}</h4> 
                         {/* Se pone () => para que no se llame infinitas veces */}
-                        <button onClick={ () => setShowModal(true)}>Ir a pagar</button>
+                        <div>
+                            <button className="btn btn-primary" onClick={ () => setShowModal(true)}><LocalAtmIcon className='mx-2' />Ir a abonar</button>
+                        </div>
+
                     </div>
                     }
                     {console.log("orden: ", order)}
                     </div>
-
-
-/*                     cartProducts.map((product) =>{
-                    {console.log("Titulo del producto: " , product.title)}
-                    return(
-                        <>
-
-                        <div key={product.id} className="card px-4 m-3">
-                            
-                            <div className='d-flex justify-content-between'>
-                                <img style={{width:"90px"}} src={product.img} alt={product.title}/>
-                                <div className='m-3'>
-                                    <h6>{product.title}</h6>
-                                    <h6 style={{textAlign:"left"}}><strong>Precio:</strong> $ {product.price} c/u</h6>
-                                    <div className='d-flex'>
-                                        <p className='m-0 p-0' style={{}}>{console.log("Cantidad: ", product.countQuantity )}CANTIDAD: {product.countQuantity}</p>
-                                    </div>
-                                </div>
-                                <div className='d-flex align-items-center'>
-                                <Fab size="small" color="warning" className="" aria-label="add" onClick={() => removeItem(product.id)}>
-                                         <DeleteIcon />
-                                </Fab>
-
-                                </div>
-
-
-                            </div>
-                            
-                            <hr className="" />
-                        </div>
-                        </>
-                      )
-                    }) */
 
                 }
 
                 {showModal && 
                     <Modal title="Datos del comprador" close={() => setShowModal()}>
                         {success ? (
-                            <>
-                            <h2>Su orden se ha generado correctametne</h2>
-                            <p>ID de compra: {success}</p>
-                            </>
+                            <div className='d-flex justify-content-center align-items-center'>
+                                <div className=''>
+                                    <img style={{width:100}} src='../assets/images/check.svg'/>
+                                    <h2>Su orden se ha generado correctamente</h2>
+                                    <p>ID de compra: <span  style={{ backgroundColor:"#9d5bff",padding:5, color: "white", fontWeight: "400", fontSize:".9em", borderRadius:5 }}>{success}</span></p>
+                                    <button className='btn btn-primary' onClick={() =>setShowModal()}>Volver a comprar</button>
+                                </div>
+                            </div>
+
                         ): (
-                            <form>
-                            <input 
-                                type="text" 
-                                name="name" 
-                                placeholder='Ingrese su nombre'
-                                // Se pone el onchange para q se pueda cargar la data, sino lo toma como empty, asi se actauliza el estado 
-                                onChange={handleChange}
-                                value={formData.name}
-                            />
-                            <input 
-                                type="number" 
-                                name="phone" 
-                                placeholder='Ingrese celular'
-                                // Se pone el onchange para q se pueda cargar la data, sino lo toma como empty, asi se actauliza el estado 
-                                onChange={handleChange}
-                                value={formData.phone}
-                            />
-                            <input 
-                                type="email" 
-                                name="email" 
-                                placeholder="Email"
-                                // Se pone el onchange para q se pueda cargar la data, sino lo toma como empty, asi se actauliza el estado 
-                                onChange={handleChange}
-                                value={formData.email}
-                            />
-                            <button type='submit' onClick={submitData}>Enviar</button>
-                        </form>
+                            <form onSubmit={handleSubmit(submitData)}>
+                                <div>
+                                    <div className="mb-2">
+                                        <label htmlFor="name"></label>
+                                        <input 
+                                            {...register("name", {required: "Debe ingresar su nombre", maxLength: 80})}
+                                            type="text" 
+                                            name="name" 
+                                            placeholder='Ingrese su nombre'
+                                            // Se pone el onchange para q se pueda cargar la data, sino lo toma como empty, asi se actauliza el estado 
+                                            onChange={handleChange}
+                                            
+                                        />
+                                        <div>
+                                        <ErrorMessage style={{color:"red"}} errors={errors} name="name" as="p" />
+
+                                        </div>
+                                    </div>
+                                    <div className="mb-2">
+                                        <label htmlFor="phone"></label>
+                                        <input 
+                                            {...register("phone", {required: "Ingrese un número de telefono"})}
+                                            type="number" 
+                                            name="phone" 
+                                            placeholder='Ingrese celular'
+                                            // Se pone el onchange para q se pueda cargar la data, sino lo toma como empty, asi se actauliza el estado 
+                                            onChange={handleChange}
+                                            value={formData.phone}
+                                        />
+                                        <div>
+                                        <ErrorMessage style={{color:"red"}} errors={errors} name="phone" as="p" />
+
+                                        </div>
+                                    </div>
+                                    <div className="mb-2">
+                                        <label htmlFor="email"></label>
+                                        <input 
+                                            {...register("email", {required: "Mail obligatorio"})}
+                                            type="email" 
+                                            name="email" 
+                                            placeholder="Email"
+                                            // Se pone el onchange para q se pueda cargar la data, sino lo toma como empty, asi se actauliza el estado 
+                                            onChange={handleChange}
+                                            value={formData.email}
+                                        />
+                                        <div>
+
+                                        <ErrorMessage style={{color:"red"}} errors={errors} name="email" as="p"/>
+                                        </div>
+                                    </div>
+                                    <div>
+
+                                    {loading ? <Loading /> : <input className='neonBtn mt-4' style={{fontSize:".8em"}}  type='submit' value="Finalizar" />}
+                                    </div>
+                            {/*         <input className='neonBtn mt-4' style={{fontSize:".8em"}}  type='submit' value="Finalizar" /> */}
+                                </div>
+                            </form>
                         )}
                        
                     </Modal>

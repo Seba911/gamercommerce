@@ -1,10 +1,12 @@
-.asdf{
-    display: flex;
-    justify-content: space-around;
-    background-color: rgb(226, 112, 255);
-    .ag{
-        display: flex;
-        justify-content: space-around;
-        background-color: rgb(226, 112, 255);
+.logoPosition{
+    display: flex
+}
+@media only screen and (max-width: 600px) {
+    .logoPosition{
+        justify-content: center;
+        padding: 15px;
+    }
+    .contactoStyles{
+        display: none;
     }
 }

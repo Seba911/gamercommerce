@@ -15,7 +15,7 @@ function App() {
   return (
     <CartProvider>
       <BrowserRouter>
-        <div className="App" style={{ background: "linear-gradient(180deg, rgba(25,25,25,1) 0%, rgba(60,60,60,1) 100%)" }}>
+        <div className="App" style={{ background: "#030434" }}>
           <NavBar />
           <Routes>
             {/* Se llama 1 por cada ruta de la app */}
@@ -32,8 +32,8 @@ function App() {
             <ItemDetailContainer />
             <ItemListContainer section="Productos en oferta" />
           </div> */}
-          <footer className='p-4 bg-secondary'>
-            <h6>Proyecto ecommerce gamer</h6>
+          <footer className='p-4 bg-dark' style={{zIndex:"2"}}>
+            <h6 className='text-white'>Proyecto ecommerce gamer</h6>
           </footer>
         </div>
       </BrowserRouter>

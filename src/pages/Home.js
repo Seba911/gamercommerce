@@ -6,18 +6,18 @@ const Home = () => {
 
 
   return (
-    <>
-      <div className='container '>
+      <div className='container'>
         <section className="showcase">
-          <header>
+          <header className="d-flex justify-content-center">
+            <img style={{height: "35px", width: "53px", marginBottom:5, marginRight:5 }} src="../../assets/images/logo.png" />
             <h2 className="logo">GAMERCOMMERCE</h2>
-            <div className="toggle"></div>
+
           </header>
           <video className='videoTag' autoPlay loop muted>
             <source src="../assets/video/video_gamercommerce.mp4" type="video/mp4" />
           </video>
           <div className="overlay"></div>
-          <div className="text row justify-content-center">
+          <div className="text">
             <h2>Armá la PC Gamer</h2>
             <h3>Que siempre quisiste</h3>
             <p className="" style={{fontWeight:"100"}}>Bienvenido a mi proyecto de ecommerce en base a productos gamers.
@@ -26,10 +26,6 @@ const Home = () => {
             comerciales.</p>
               <div>
                 <Link to="/productos" className='neonBtn'>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
                 Explorar
                 </Link>
              {/*    <a href="#">Explorar</a> */}
@@ -37,6 +33,7 @@ const Home = () => {
             <div className="mt-3">
                 <ItemListContainer section="Productos destacados" />
               </div>
+              
           </div>
 
         </section>
@@ -59,7 +56,7 @@ const Home = () => {
                 
               </section> */}
       </div>
-    </>
+
   )
 }
 export default Home
