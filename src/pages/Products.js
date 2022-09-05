@@ -11,7 +11,7 @@ const Products = () =>{
         <div className='container my-4'>
               <section className='main-container'>
                 { !categoryId ? 
-                  <h3 style={{color:"white"}}>Seccion de productos</h3> 
+                  <h3 style={{color:"white"}}>Sección de productos</h3> 
                   : 
                   <h3 style={{color:"white"}}>Categorias</h3>
                 }

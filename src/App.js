@@ -8,7 +8,6 @@ import Detail from './pages/Detail'
 import CheckOut from './pages/Checkout';
 import CartProvider from './context/CartContext';
 
-
 function App() {
   return (
     <CartProvider>
@@ -31,7 +30,11 @@ function App() {
             <ItemListContainer section="Productos en oferta" />
           </div> */}
           <footer className='p-4 bg-dark' style={{zIndex:"2"}}>
-            <h6 className='text-white'>Proyecto ecommerce gamer</h6>
+            <div className='d-flex mb-2 justify-content-center align-items-center'>
+                <img style={{height: "20px", width: "30px" }} src="../../assets/images/logo.png" alt="logogamercommerce"/>
+                <h2 className="logo" style={{fontSize:"1.2em", marginTop:5, marginLeft:5}}>GAMERCOMMERCE</h2>
+            </div>
+            <span className='text-white' style={{fontSize:".8em"}}>Proyecto Ecommerce realizado en curso de ReactJS-Coderhouse</span>
           </footer>
         </div>
       </BrowserRouter>

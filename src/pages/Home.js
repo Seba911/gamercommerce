@@ -28,7 +28,6 @@ const Home = () => {
                 <Link to="/productos" className='neonBtn'>
                 Explorar
                 </Link>
-             {/*    <a href="#">Explorar</a> */}
               </div>
             <div className="mt-3">
                 <ItemListContainer section="Productos destacados" />
@@ -37,24 +36,6 @@ const Home = () => {
           </div>
 
         </section>
-        {/* <section className='main-container'>
-                <div className=""  >
-                  <div className="" >
-                    <video className='videoTag' autoPlay loop muted>
-                      <source src="../assets/video/video_gamercommerce.mp4" type="video/mp4" />
-                    </video>
-                    <h1 style={{color:"white", fontWeight:"100", fontSize:"2em"}}>Arma la <strong>PC gamer</strong> que siempre quisiste</h1>
-                    <p style={{color:"white"}}>Lorem Ipsum texto de relleno Ipsum texto de relleno Ipsum texto de relleno Ipsum texto de relleno Ipsum 
-                      texto de relleno Ipsum texto de relleno </p>
-                    <button>Explorar</button>
-                  </div>
-                  <div className="">
-                    <ItemListContainer section="Productos destacados" />
-                  </div>
-
-                </div>
-                
-              </section> */}
       </div>
 
   )

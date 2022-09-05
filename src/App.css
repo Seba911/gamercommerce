@@ -43,10 +43,9 @@ header
   width: 100%;
   padding: 40px 100px;
   z-index: 1000;
-
   align-items: center;
 }
-header .logo
+.logo
 {
   font-weight: 100;
   color: #fff;

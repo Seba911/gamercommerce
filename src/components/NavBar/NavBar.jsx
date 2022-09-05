@@ -29,6 +29,8 @@ const NavBar = () => {
                         <DropdownMenu>
                             <DropdownItem><Link to="/category/motherboards">MotherBoard</Link></DropdownItem>
                             <DropdownItem><Link to="/category/placas_video">Placas de Video</Link></DropdownItem>
+                            <DropdownItem><Link to="/category/mouses">Mouses</Link></DropdownItem>
+                            <DropdownItem><Link to="/category/teclados">Teclados</Link></DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 <Link to="/contacto" className='contactoStyles p-0 m-0 mx-4' style={{color:"white", textDecoration:"none", lineHeight:2.3}}>Contacto</Link>
