@@ -19,4 +19,4 @@ Pasos para instalación
 
 **GIF Proyecto**
 
-    Link: 
+    Link: https://drive.google.com/file/d/1qRhkfX4NHYW95dX7a_tmo7QMpb1-IHJo/view?usp=sharing
