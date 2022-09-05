@@ -80,14 +80,11 @@ const Cart = () =>{
 
     const handleChange = (e) =>{
         // Para evitar q se haga por parametros, se accede al tipo de dato directametne a traves del target.name, que vendria a ser como un id
-
         setFormData({...formData, [e.target.name]: e.target.value})
     }
 
     const submitData = (e) => {
   /*       e.preventDefault() */
-        console.log("order para enviar: ", {...order, buyer: formData })
-        console.log("nombre del comprador",{buyer: formData.name})
         setLoading(true)
         pushData({...order, buyer: formData })
         
@@ -101,7 +98,6 @@ const Cart = () =>{
         const orderDoc = await addDoc(collectionOrder, newOrder)
         setLoading(false)
         setSuccess(orderDoc.id)
-        console.log()
         clear()
     }
 
@@ -174,7 +170,7 @@ const Cart = () =>{
 
                     </div>
                     }
-                    {console.log("orden: ", order)}
+                    {/* {console.log("orden: ", order)} */}
                     </div>
 
                 }
@@ -184,7 +180,7 @@ const Cart = () =>{
                         {success ? (
                             <div className='d-flex justify-content-center align-items-center'>
                                 <div className=''>
-                                    <img style={{width:100}} src='../assets/images/check.svg'/>
+                                    <img style={{width:100}} src='../assets/images/check.svg' alt="imgmuestra"/>
                                     <h2>Su orden se ha generado correctamente</h2>
                                     <p>ID de compra: <span  style={{ backgroundColor:"#9d5bff",padding:5, color: "white", fontWeight: "400", fontSize:".9em", borderRadius:5 }}>{success}</span></p>
                                     <button className='btn btn-primary' onClick={() =>setShowModal()}>Volver a comprar</button>

@@ -9,9 +9,6 @@ const ItemDetail = ({data, section, setShowModal}) =>{
 
     const [quantitySelected, setQuantitySelected] = useState(0)
 
-
-/*     console.log(data) */
-
     return(
         <div className='container my-5'>
      
@@ -22,15 +19,16 @@ const ItemDetail = ({data, section, setShowModal}) =>{
                 <img className='rounded'    
                     style={{width:"100%"}} 
                     src={data.img} 
+                    alt="imgPrincipal"
                     /* hay que llamarlo en callback para que no se ejecute todo el tiempo */
                     onClick={() =>setShowModal(true)}/>
                 <Row className='mt-2 m-2 p-0 thumbnail justify-content-between'>
-                    <img className='m-0 p-0 rounded' style={{width:70, border:"2px solid #EA75FF"}} src={data.img}/>
-                    <img className='m-0 p-0 rounded border' style={{width:70, filter: "contrast(40%) brightness(140%)",}} src={data.img}/>
-                    <img className='m-0 p-0 rounded border' style={{width:70, filter: "contrast(40%) brightness(140%)",}} src={data.img}/>
-                    <img className='m-0 p-0 rounded border' style={{width:70, filter: "contrast(40%) brightness(140%)",}} src={data.img}/>
-                    <img className='m-0 p-0 rounded border' style={{width:70, filter: "contrast(40%) brightness(140%)",}} src={data.img}/>
-                    <img className='m-0 p-0 rounded border' style={{width:70, filter: "contrast(40%) brightness(140%)",}} src={data.img}/>
+                    <img className='m-0 p-0 rounded' style={{width:70, border:"2px solid #EA75FF"}} src={data.img} alt="imgMuestra"/>
+                    <img className='m-0 p-0 rounded border' style={{width:70, filter: "contrast(40%) brightness(140%)",}} src={data.img} alt="imgMuestra"/>
+                    <img className='m-0 p-0 rounded border' style={{width:70, filter: "contrast(40%) brightness(140%)",}} src={data.img} alt="imgMuestra"/>
+                    <img className='m-0 p-0 rounded border' style={{width:70, filter: "contrast(40%) brightness(140%)",}} src={data.img} alt="imgMuestra"/>
+                    <img className='m-0 p-0 rounded border' style={{width:70, filter: "contrast(40%) brightness(140%)",}} src={data.img} alt="imgMuestra"/>
+                    <img className='m-0 p-0 rounded border' style={{width:70, filter: "contrast(40%) brightness(140%)",}} src={data.img} alt="imgMuestra"/>
                 </Row>
             </Col>
             <Col lg="4" className='p-4 text-white' style={{textAlign:"left"}}>
@@ -42,7 +40,7 @@ const ItemDetail = ({data, section, setShowModal}) =>{
                 <p style={{fontSize:".7em", textDecoration:"none", color:"#EA75FF"}} className=''>Ver medios de pago</p>
                 <hr />
                 <span style={{color:"#3CF586"}}>Envio Gratis</span>
-{/*                 {console.log("quantitySelected: ", quantitySelected)} */}
+
 
                 {
                     quantitySelected > 0 ? 

@@ -2,14 +2,9 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
-
 import Fab from '@mui/material/Fab';
-
 import { useContext, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
-import {Row, Col} from 'reactstrap'
-
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -29,7 +24,7 @@ const CartWidget = () => {
         setAnchorEl(null);
     };
 
-    console.log("Total products: ", totalProducts)
+/*     console.log("Total products: ", totalProducts) */
 
 
     return (
@@ -70,7 +65,6 @@ const CartWidget = () => {
                     </div>
                     :
                     cartProducts.map((product) =>{
-                    {console.log("Titulo del producto: " , product.title)}
                     return(
                         <div key={product.id} className="m-3">
                             <h6>{product.title}</h6>
@@ -80,7 +74,6 @@ const CartWidget = () => {
                                     <p style={{fontSize:".6em"}}><strong>Precio:</strong> $ {product.price} c/u</p>
                                     <div className='d-flex'>
                                         <p className='m-0 p-0' style={{fontSize:".6em"}}>
-                                            {console.log("Cantidad: ", product.countQuantity )}
                                             CANTIDAD: {product.countQuantity}
                                         </p>
                                     </div>

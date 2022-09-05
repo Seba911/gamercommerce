@@ -9,7 +9,7 @@ const Home = () => {
       <div className='container'>
         <section className="showcase">
           <header className="d-flex justify-content-center">
-            <img style={{height: "35px", width: "53px", marginBottom:5, marginRight:5 }} src="../../assets/images/logo.png" />
+            <img style={{height: "35px", width: "53px", marginBottom:5, marginRight:5 }} src="../../assets/images/logo.png" alt="logogamercommerce"/>
             <h2 className="logo">GAMERCOMMERCE</h2>
 
           </header>

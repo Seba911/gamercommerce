@@ -7,7 +7,7 @@ import { useContext } from 'react'
 
 const Item = ({ data }) => {
 
-    const { handleClick, name } = useContext(CartContext)
+    const { name } = useContext(CartContext)
     const { id, title, price, img, stock } = data
 
     /*     console.log("Titulo: " + title + "Precio: " + price) */

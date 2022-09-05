@@ -1,7 +1,6 @@
 import { Row } from 'reactstrap'
 import ItemList from "../ItemList/ItemList"
 import { useState, useEffect } from "react"
-import products from '../../utils/products.mock'
 import { useParams } from 'react-router-dom'
 import Loading from '../Loading/Loading'
 /* collection interactua con las colecciones. Este trae info. getDocs con los documentos */
@@ -16,31 +15,6 @@ const ItemListContainer = ({section}) =>{
 
     const {categoryId} = useParams()
 
-    const filterByCategory = products.filter((product) => product.category === categoryId)
-
-/*     console.log(products) */
-
-/*     useEffect(() => {
-        if (loading) {
-        setTimeout(() => {
-            setLoading(false);
-        }, 2000);
-        }
-    }, [loading]); */
-
-/*     const getProducts = new Promise( (resolve, reject) => {
-      setTimeout( () => {
-
-        if(categoryId){
-            resolve(filterByCategory)
-    
-        } else{
-            resolve(products)
-        }
-      }, 2000)
-    })
- */
-
     const getProducts = async () =>{
         /* primer parametro conexion a firebase, y la otra a la colecion q hacemos referencia */
         const productCollection = collection(db, 'productos')
@@ -50,7 +24,6 @@ const ItemListContainer = ({section}) =>{
         const productList = productSnapshot.docs.map( (doc) =>{
             let product = doc.data()
             /* crea una nueva propiedad , la ".id" */
-/*             console.log("producto: ", product) */
             product.id = doc.id
             return product
         })
@@ -78,19 +51,6 @@ const ItemListContainer = ({section}) =>{
         .then(res =>setListProducts (res.docs.map(product =>({id: product.id, ...product.data()}))))
         }
     },[categoryId])
-
-
-/*     useEffect(() => {
-        getProducts
-            .then( (res) => { 
-                setListProducts(res)
-            })
-            .catch( (error) => { 
-                console.log("la llama fallo", error)
-            })
-            .finally( () => { 
-            })
-    }, [categoryId]) */
     
 
     return(

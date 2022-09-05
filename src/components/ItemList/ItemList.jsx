@@ -1,10 +1,6 @@
-import { useContext } from "react"
-import { CartContext } from "../../context/CartContext"
 import Item from "../Item/Item"
 
 const ItemList = ({dataProducts}) =>{
-
-    const {cartProducts} = useContext(CartContext)
 
     return(
         <>  

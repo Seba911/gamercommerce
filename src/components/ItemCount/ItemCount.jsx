@@ -9,7 +9,7 @@ de la prop Stock x ej */
 const ItemCount = ({ stock, initial, setQuantitySelected, productData }) => {
 
   /* solo se llama a la funcion que se encargue de modificar al estiado de cartproducts */
-  const { addProductToCart, cantidadSeleccionada, cartProducts} = useContext(CartContext)
+  const { addProductToCart} = useContext(CartContext)
 
   const [countQuantity, setCountQuantity] = useState(1);
   const [btnRestaActivo, SetBtnRestaActivo] = useState(false);
@@ -43,22 +43,8 @@ const ItemCount = ({ stock, initial, setQuantitySelected, productData }) => {
   };
 
   const onAdd = () =>{
-/*     console.log("Agregar al carrito:", productData) */
     setQuantitySelected(countQuantity)
-
-/*     const cantidadEnCartProducts = cartProducts.map((product) => product.countQuantity)
-    const idDelProducto = cartProducts.map((product) => product.id)
-    console.log("idDelProducto: ", idDelProducto)
-
-    if(cantidadEnCartProducts[0] >= stock){
-      console.log("No se puede agregar")
-    } else{
-      addProductToCart({...productData, countQuantity})
-    }
- */
     addProductToCart({...productData, countQuantity})
-    
-
   }
   return (
     <div>
@@ -92,48 +78,3 @@ const ItemCount = ({ stock, initial, setQuantitySelected, productData }) => {
   )
 }
 export default ItemCount
-
-
-/* import React from 'react';
-import { useState } from 'react';
-
-const Contador = () => {
-
-  const [count, setCount] = useState(1);
-  const [date, setDate] = useState()
-  let Fecha = new Date().toLocaleString();
-  const addNumber = () => {
-    console.log(Fecha)
-    setCount(count + 1);
-    setDate(Fecha)
-    if(count >= 0){
-      resta.style.display="block"
-    }
-  };
-  const decreaseNumber = () => {
-    let resta = document.getElementById("resta")
-    setDate(Fecha)
-    console.log(Fecha)
-    setCount(count - 1);
-    if(count <= 1){
-      resta.style.display="none"
-    }
-  };
-
-
-  return (
-    <>
-    <div style={{display:"flex"}}>
-      <button id="resta" onClick={decreaseNumber}>-</button>
-      <p>{count}</p>
-      <button onClick={addNumber}>+</button>
-
-    </div>
-    <div>
-      <p>Cantidad de clicks: {count}</p>
-      <p>Ultimo click: {date}</p>
-    </div> 
-    </>
-  );
-};
-export default Contador; */

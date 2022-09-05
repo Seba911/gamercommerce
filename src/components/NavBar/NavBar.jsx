@@ -17,7 +17,7 @@ const NavBar = () => {
             </div> */}
             <ul className='d-flex justify-content-between align-items-center' style={{color:"white"}}>
                 <Link to="/" className='logoPosition ' style={{textDecoration:"none"}}>
-                    <img style={{height: "25px", width: "40px" }} src="../../assets/images/logo.png" />
+                    <img style={{height: "25px", width: "40px" }} src="../../assets/images/logo.png" alt="logogamercommerce"/>
                 </Link>
 
                 <Link to="/productos" className='p-0 m-0 mx-4' style={{color:"white", textDecoration:"none", lineHeight:2.3}}>Productos</Link>
